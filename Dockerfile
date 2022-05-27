@@ -2,7 +2,7 @@ FROM node:lts-alpine as build_stage
 
 WORKDIR /usr/src/app/
 
-COPY ./wallpaper-page/ ./
+COPY ./wallpaper-front/ ./
 
 RUN npm i
 

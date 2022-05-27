@@ -1,0 +1,5 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/alexander/wallpaper-weater'
+uvicorn backend.main:app --host 0.0.0.0 --port 8000
+make: Leaving directory '/home/alexander/wallpaper-weater'
+ 
