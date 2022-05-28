@@ -11,7 +11,7 @@ from starlette.templating import _TemplateResponse
 from websockets.exceptions import ConnectionClosedOK
 
 from backend.di import DI
-from backend.services.weatherbit_weather import get_weather_by_coords, Coords, Weather
+from backend.services.freeweather import get_weather_by_coords, Coords, Weather
 
 
 app = FastAPI()
@@ -48,9 +48,10 @@ async def websocket_enpoint(websocket: WebSocket, altitude: float = 43.026257, l
         if response.get('text') == 'OPEN' or response.get('text') == 'OK':
             data = get_weather_by_coords(Coords(altitude=altitude, longitude=longitude))
             await websocket.send_text(data.json())
-            await asyncio.sleep(5)
+            await asyncio.sleep(10)
         else:
             await websocket.close()
+
 
 @app.exception_handler(ConnectionClosedOK)
 async def ws_connection_closed_ok(request, exc):
